@@ -143,6 +143,23 @@ static DialogMessageButton fw_version_screen(DialogsApp* dialogs, DialogMessage*
     return result;
 }
 
+static DialogMessageButton wf_info_screen(DialogsApp* dialogs, DialogMessage* message) {
+    DialogMessageButton result;
+
+    const char* screen_header = "WhiteFox Firmware\n";
+
+    const char* screen_text = "Play with caution.\n"
+                              "Not for illegal use!";
+
+    dialog_message_set_header(message, screen_header, 0, 0, AlignLeft, AlignTop);
+    dialog_message_set_text(message, screen_text, 0, 26, AlignLeft, AlignTop);
+    result = dialog_message_show(dialogs, message);
+    dialog_message_set_header(message, NULL, 0, 0, AlignLeft, AlignTop);
+    dialog_message_set_text(message, NULL, 0, 0, AlignLeft, AlignTop);
+
+    return result;
+}
+
 const AboutDialogScreen about_screens[] = {
     product_screen,
     compliance_screen,
@@ -150,7 +167,8 @@ const AboutDialogScreen about_screens[] = {
     icon1_screen,
     icon2_screen,
     hw_version_screen,
-    fw_version_screen};
+    fw_version_screen,
+    wf_info_screen};
 
 const size_t about_screens_count = sizeof(about_screens) / sizeof(AboutDialogScreen);
 
